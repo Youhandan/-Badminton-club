@@ -2,9 +2,27 @@
  * Created by hyou on 2016/10/14.
  */
 "use strict";
-var input='2016-06-11 13:00~15:00 11';
-generateSummary(input);
-function generateSummary(input){
+function generateSummary(input) {
+    var inputArr=input.split('\n');
+    var incomeTotal=0;
+    var outcomeTotal=0;
+    var profitTotal=0;
+    var calculateList='';
+    inputArr.forEach(function (content) {
+        if(content) {
+            var resultOnce = generateOnce(content);
+            incomeTotal += resultOnce.income;
+            outcomeTotal += resultOnce.outcome;
+            profitTotal += resultOnce.profit;
+            calculateList += resultOnce.resultStr + '\n';
+        }
+
+    });
+    var summaryStr='[Summary]\n\n'+calculateList+'\n'+'Total Income: '+incomeTotal+'\n'+'Total Payment: '+outcomeTotal+'\n'+'Profit: '+profitTotal;
+    return summaryStr;
+}
+
+function generateOnce(input){
     var inputElement=input.split(' ');
     var date=new Date(inputElement[0]);
     var timePeriod=inputElement[1];
@@ -12,17 +30,24 @@ function generateSummary(input){
     var income=incomeFunc(participantNum);
     var outcome=outcomeFunc(date,timePeriod,participantNum);
     var profit=income-outcome;
+    var resultStr='';
+    var result={};
     if (profit>0){
-        console.log(inputElement[0]+' '+'+'+income+' '+'-'+outcome+' '+'+'+profit);
+        resultStr=inputElement[0]+' '+inputElement[1]+' '+'+'+income+' '+'-'+outcome+' '+'+'+profit;
     }
     else if(profit<0){
-        console.log(inputElement[0]+' '+'+'+income+' '+'-'+outcome+' '+profit);
+        resultStr=inputElement[0]+' '+inputElement[1]+' '+'+'+income+' '+'-'+outcome+' '+profit;
     }
     else {
-        console.log(inputElement[0]+' '+'+'+income+' '+'-'+outcome+' '+profit);
+        resultStr=inputElement[0]+' '+inputElement[1]+' '+'+'+income+' '+'-'+outcome+' '+profit;
     }
-
+    result['income']=income;
+    result['outcome']=outcome;
+    result['profit']=profit;
+    result['resultStr']=resultStr;
+    return result
 }
+
 
 function incomeFunc(participantNum) {
     if(participantNum<4){
