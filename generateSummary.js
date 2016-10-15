@@ -18,8 +18,7 @@ function generateSummary(input) {
         }
 
     });
-    var summaryStr='[Summary]\n\n'+calculateList+'\n'+'Total Income: '+incomeTotal+'\n'+'Total Payment: '+outcomeTotal+'\n'+'Profit: '+profitTotal;
-    return summaryStr;
+    return '[Summary]\n\n'+calculateList+'\n'+'Total Income: '+incomeTotal+'\n'+'Total Payment: '+outcomeTotal+'\n'+'Profit: '+profitTotal;
 }
 
 function generateOnce(input){

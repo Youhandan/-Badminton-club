@@ -3,54 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <title>Finance Calculation of Badminton club</title>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-
+    <script src="jquery.min.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header></header>
+<header>
+    <h1>Badminton Club Finance Calculation</h1>
+</header>
 <article>
-    <form>
-        <label for="date">Select Date</label>
-        <input type="date" id="date">
-        <label for="startTime">Select StartTime</label>
-        <select id="startTime">
-            <option>09:00</option>
-            <option>10:00</option>
-            <option>11:00</option>
-            <option>12:00</option>
-            <option>13:00</option>
-            <option>14:00</option>
-            <option>15:00</option>
-            <option>16:00</option>
-            <option>17:00</option>
-            <option>18:00</option>
-            <option>19:00</option>
-            <option>20:00</option>
-        </select>
-        <label for="endTime">Select endTime</label>
-        <select id="endTime">
-            <option>11:00</option>
-            <option>12:00</option>
-            <option>13:00</option>
-            <option>14:00</option>
-            <option>15:00</option>
-            <option>16:00</option>
-            <option>17:00</option>
-            <option>18:00</option>
-            <option>19:00</option>
-            <option>20:00</option>
-            <option>21:00</option>
-            <option>22:00</option>
-        </select>
-        <label for="number">Input participation</label>
-        <input type="number" id="number" min="0">
-        <input type="submit" value="Add" id="add">
-    </form>
-    <p>Activity List</p>
-    <textarea id="list"></textarea>
-    <input type="button" id="result" value="Calculate">
-    <textarea id="resultList"></textarea>
+    <div class="inputPart">
+        <h3>Activity Information</h3>
+        <form>
+            <div class="row">
+                <div class="col">
+                    <label for="date">Select Date</label>
+                    <input type="date" id="date" value="2016-06-02">
+                </div>
+                <div class="col">
+                    <label for="number">Input participation</label>
+                    <input type="number" id="number" required="required" min="0">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="startTime">Select StartTime</label>
+                    <select id="startTime">
+                        <option>09:00</option>
+                        <option>10:00</option>
+                        <option>11:00</option>
+                        <option>12:00</option>
+                        <option>13:00</option>
+                        <option>14:00</option>
+                        <option>15:00</option>
+                        <option>16:00</option>
+                        <option>17:00</option>
+                        <option>18:00</option>
+                        <option>19:00</option>
+                        <option>20:00</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <label for="endTime">Select endTime</label>
+                    <select id="endTime">
+                        <option>11:00</option>
+                        <option>12:00</option>
+                        <option>13:00</option>
+                        <option>14:00</option>
+                        <option>15:00</option>
+                        <option>16:00</option>
+                        <option>17:00</option>
+                        <option>18:00</option>
+                        <option>19:00</option>
+                        <option>20:00</option>
+                        <option>21:00</option>
+                        <option>22:00</option>
+                    </select>
+                </div>
+            </div>
+            <input type="button" id="add" class="button" value="Add">
+        </form>
+        <h3>Activity List</h3>
+        <textarea id="list" class="input" readonly="readonly"></textarea>
+        <input type="button" id="result" class="button" value="Generate Summary">
+    </div>
+    <div class="outputPart">
+        <h3>Result</h3>
+        <textarea id="resultList" class="output" readonly="readonly"></textarea>
+        <input id="clean" type="button" class="button" value="Clear List">
+    </div>
 </article>
+<footer>版权所有&copy</footer>
 <script src="indexScript.js"></script>
 <script src="generateSummary.js"></script>
 </body>
