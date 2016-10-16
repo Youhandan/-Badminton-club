@@ -65,11 +65,13 @@ $(function () {
     /*清除textarea的内容*/
     $('#clean').click(function () {
         $('textarea').val('');
+        dateArr=[];
     });
 
     /*****************输入验证函数*************************/
     /*输入验证主函数*/
     function inputVerification(str) {
+        dateArr=[];
         var pattern=/^\d{4}-\d{2}-\d{2}\s\d{2}:00~\d{2}:00\s\d+$/;
         var strArr=str.split('\n');
         return strArr.every(function (e) {
