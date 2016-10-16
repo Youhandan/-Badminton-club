@@ -10,6 +10,7 @@ body{
     display: flex;
     flex-direction: column;
     flex: auto;
+
 }
 header{
     background: #216fd0;
@@ -44,17 +45,17 @@ form{
     flex-wrap:wrap;
     margin: 20px;
     flex: auto;
-    width: 30%;
+    width: 50%;
 }
 textarea {
     margin: 10px;
     padding: 10px;
-    font-size: 15px;
+    font-size: 20px;
     resize: none;
     flex: auto;
 }
 textarea.output{
-    height: 500px;
+    height: 350px;
 }
 .row{
     padding: 5px;
@@ -74,6 +75,8 @@ textarea.output{
 }
 .col label{
     margin-right: 10px;
+    flex: auto;
+    font-size: 17px;
 }
 
 
@@ -101,4 +104,7 @@ h3{
     position: relative;
     right: 20px;
     bottom: 20px;
+}
+.inputBox{
+    font-size: 17px;
 }
