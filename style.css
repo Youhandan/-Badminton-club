@@ -22,9 +22,8 @@ header{
 }
 footer{
     background:black;
-    height: 30px;
     text-align: center;
-    padding:20px 10px 0 0;
+    padding:10px 0;
     color: white;
     font-size: 10px;
     flex: auto;
