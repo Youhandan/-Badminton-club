@@ -2,6 +2,9 @@
  * Created by youhandan on 2016/10/14.
  */
 $(function () {
+    var dateArr=[];
+    /**********事件*************/
+    /*Participation失去焦点事件*/
     $('#number').blur(function () {
         var num=$(this).val();
         if(num<0){
@@ -12,34 +15,43 @@ $(function () {
             $(this).val(parseInt(num));
         }
     });
+    /*EndTime 失去焦点事件*/
     $('#endTime').blur(function () {
-        if($(this).val()<$('#startTime').val()){
+        if(!(getHour($(this).val())-getHour($('#startTime').val())==2||getHour($(this).val())-getHour($('#startTime').val())==3)){
             alert("Please input correct time period!");
         }
     });
-
+    /*添加活动信息到Activity List事件*/
     $('#add').click(function () {
         var date=$('#date').val();
-        var startTime=$('#startTime').val();
-        var endTime=$('#endTime').val();
-        var num=$('#number').val();
-        var listContent=$('#list').val();
-        if((startTime<endTime)&&(num!=="")){
-            if(listContent==''){
-                listContent+=date+' '+startTime+'~'+endTime+' '+num;
-                $('#list').val(listContent);
+        if(dateArr.indexOf(date)==-1){
+            dateArr.push(date);
+            var startTime=$('#startTime').val();
+            var endTime=$('#endTime').val();
+            var num=$('#number').val();
+            var listContent=$('#list').val();
+            if((getHour(endTime)-getHour(startTime)==2||getHour(endTime)-getHour(startTime)==3)&&(num!=="")){
+                if(listContent==''){
+                    listContent+=date+' '+startTime+'~'+endTime+' '+num;
+                    $('#list').val(listContent);
+                }
+                else{
+                    listContent+='\n'+date+' '+startTime+'~'+endTime+' '+num;
+                    $('#list').val(listContent);
+                }
+
             }
             else{
-                listContent+='\n'+date+' '+startTime+'~'+endTime+' '+num
-                $('#list').val(listContent);
+                alert('Please add correct information format!')
             }
-
         }
         else{
-            alert('Please add correct information format!')
+            alert('Date is duplicated')
         }
 
+
     });
+    /*生成summary*/
     $('#result').click(function () {
         var str=$('#list').val();
         if(inputVerification(str)){
@@ -50,17 +62,20 @@ $(function () {
 
 
     });
+    /*清除textarea的内容*/
     $('#clean').click(function () {
         $('textarea').val('');
     });
 
+    /*****************输入验证函数*************************/
+    /*输入验证主函数*/
     function inputVerification(str) {
-        var pattern=/^\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}~\d{2}:\d{2}\s\d+$/;
+        var pattern=/^\d{4}-\d{2}-\d{2}\s\d{2}:00~\d{2}:00\s\d+$/;
         var strArr=str.split('\n');
         return strArr.every(function (e) {
             if(pattern.test(e)){
                 var inputElement=e.split(' ');
-                var date=new Date(inputElement[0]);
+                var date=inputElement[0];
                 var dateState=dateVerify(date);
                 var timePeriod=inputElement[1];
                 var timeState=timePeriodVerify(timePeriod);
@@ -75,30 +90,32 @@ $(function () {
 
     }
 
-
-
+    /*输入验证子函数*/
+    /*输入日期格式验证及重复性验证*/
     function dateVerify(date) {
-        return String(date)!=='Invalid Date'
+        if(String(new Date(date))!=='Invalid Date'){
+            if(dateArr.indexOf(date)==-1){
+                dateArr.push(date);
+                return true
+            }
+        }
+        else return false
+
     }
+    /*输入时间段验证*/
     function timePeriodVerify(timePeriod) {
         var timeElement=timePeriod.split('~');
-        var timePattern=/^\d{2}:00$/;
-        return timeElement.every(function (e) {
-            if(timePattern.test(e)){
-                var startTime=parseInt(timeElement[0].match(/\d{2}/)[0]);
-                var endTime=parseInt(timeElement[1].match(/\d{2}/)[0]);
-                return endTime-startTime==2||endTime-startTime==3;
-            }
-            else return false
-        });
+        return ((getHour(timeElement[1])-getHour(timeElement[0])==2)||(getHour(timeElement[1])-getHour(timeElement[0])==3))
     }
+    /*输入人数验证*/
     function participantVerify(participantNum){
         var positiveInteger=/^\d+$/;
         return positiveInteger.test(participantNum)
     }
-
-
-
+    /*获取输入时间的Hour部分*/
+    function getHour(time) {
+        return parseInt(time.match(/\d{2}/)[0]);
+    }
 
 
 });
