@@ -2,25 +2,30 @@
  * Created by hyou on 2016/10/14.
  */
 "use strict";
+/**********主函数************/
 function generateSummary(input) {
-    var inputArr=input.split('\n');
-    var incomeTotal=0;
-    var outcomeTotal=0;
-    var profitTotal=0;
-    var calculateList='';
-    inputArr.forEach(function (content) {
-        if(content) {
-            var resultOnce = generateOnce(content);
-            incomeTotal += resultOnce.income;
-            outcomeTotal += resultOnce.outcome;
-            profitTotal += resultOnce.profit;
-            calculateList += resultOnce.resultStr + '\n';
-        }
+    if(inputVerification(input)) {
+        var inputArr = input.split('\n');
+        var incomeTotal = 0;
+        var outcomeTotal = 0;
+        var profitTotal = 0;
+        var calculateList = '';
+        inputArr.forEach(function (content) {
+            if (content) {
+                var resultOnce = generateOnce(content);
+                incomeTotal += resultOnce.income;
+                outcomeTotal += resultOnce.outcome;
+                profitTotal += resultOnce.profit;
+                calculateList += resultOnce.resultStr + '\n';
+            }
 
-    });
-    return '[Summary]\n\n'+calculateList+'\n'+'Total Income: '+incomeTotal+'\n'+'Total Payment: '+outcomeTotal+'\n'+'Profit: '+profitTotal;
+        });
+        return '[Summary]\n\n' + calculateList + '\n' + 'Total Income: ' + incomeTotal + '\n' + 'Total Payment: ' + outcomeTotal + '\n' + 'Profit: ' + profitTotal;
+    }
+    else return "Wrong input！"
 }
-
+/********子函数**************/
+/*生成单次活动财务总结*/
 function generateOnce(input){
     var inputElement=input.split(' ');
     var date=new Date(inputElement[0]);
@@ -47,7 +52,7 @@ function generateOnce(input){
     return result
 }
 
-
+/*根据参与人数计算收入*/
 function incomeFunc(participantNum) {
     if(participantNum<4){
         return 0
@@ -56,7 +61,7 @@ function incomeFunc(participantNum) {
         return 30*participantNum
     }
 }
-
+/*根据日期、时间段、参与人数计算支出*/
 function outcomeFunc(date,timePeriod,participantNum) {
     /*输入参数预处理*/
     var day=date.getDay();
@@ -68,7 +73,7 @@ function outcomeFunc(date,timePeriod,participantNum) {
     var placeNum=placeNumFunc(participantNum);
     return placeMoney*placeNum
 }
-
+/*根据人数计算预定场地数*/
 function placeNumFunc(participantNum) {
     var T=parseInt(participantNum/6);
     var X=participantNum%6;
@@ -95,6 +100,7 @@ function placeNumFunc(participantNum) {
         return T
     }
 }
+/*根据星期和时间段计算场地金额总数*/
 function placeMoneyFunc(day,startTime,endTime) {
 
     /*计算不同时间场地金额*/
