@@ -4,25 +4,22 @@
 "use strict";
 /**********主函数************/
 function generateSummary(input) {
-    if(inputVerification(input)) {
-        var inputArr = input.split('\n');
-        var incomeTotal = 0;
-        var outcomeTotal = 0;
-        var profitTotal = 0;
-        var calculateList = '';
-        inputArr.forEach(function (content) {
-            if (content) {
-                var resultOnce = generateOnce(content);
-                incomeTotal += resultOnce.income;
-                outcomeTotal += resultOnce.outcome;
-                profitTotal += resultOnce.profit;
-                calculateList += resultOnce.resultStr + '\n';
-            }
+    var inputArr = input.split('\n');
+    var incomeTotal = 0;
+    var outcomeTotal = 0;
+    var profitTotal = 0;
+    var calculateList = '';
+    inputArr.forEach(function (content) {
+        if (content) {
+            var resultOnce = generateOnce(content);
+            incomeTotal += resultOnce.income;
+            outcomeTotal += resultOnce.outcome;
+            profitTotal += resultOnce.profit;
+            calculateList += resultOnce.resultStr + '\n';
+        }
 
-        });
-        return '[Summary]\n\n' + calculateList + '\n' + 'Total Income: ' + incomeTotal + '\n' + 'Total Payment: ' + outcomeTotal + '\n' + 'Profit: ' + profitTotal;
-    }
-    else return "Wrong input！"
+    });
+    return '[Summary]\n\n' + calculateList + '\n' + 'Total Income: ' + incomeTotal + '\n' + 'Total Payment: ' + outcomeTotal + '\n' + 'Profit: ' + profitTotal;
 }
 /********子函数**************/
 /*生成单次活动财务总结*/
@@ -69,14 +66,14 @@ function outcomeFunc(date,timePeriod,participantNum) {
     var timePattern=/\d{2}/;
     var startTime=parseInt(timeElement[0].match(timePattern)[0]);
     var endTime=parseInt(timeElement[1].match(timePattern)[0]);
+    var T=parseInt(participantNum/6);
+    var X=participantNum%6;
     var placeMoney=placeMoneyFunc(day,startTime,endTime);
-    var placeNum=placeNumFunc(participantNum);
+    var placeNum=placeNumFunc(T,X);
     return placeMoney*placeNum
 }
 /*根据人数计算预定场地数*/
-function placeNumFunc(participantNum) {
-    var T=parseInt(participantNum/6);
-    var X=participantNum%6;
+function placeNumFunc(T,X) {
     if(T==0){
         if(X<4){
             return T
