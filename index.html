@@ -6,31 +6,31 @@
     <title>Finance Calculation of Badminton club</title>
     <script src="jquery.min.js"></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="normalize.css">
 </head>
 <body>
 <header>
     <h1>Badminton Club Finance Calculation</h1>
 </header>
-<article>
+<div class="content">
     <div class="segment">
-        <h3>Activity Information</h3>
+        <h3 class="label">Activity Information</h3>
         <form>
-            <div class="row">
             <div class="col">
-                <div class="row">
-                    <label for="date">Select Date</label>
-                    <input type="date" id="date" value="2016-06-02" class="inputBox">
+                <div class="inputBox">
+                    <span class="input-item">Date</span>
+                    <input type="date" id="date" value="2016-06-02" class="input-field">
                 </div>
-                <div class="row">
-                    <label for="number">Participation</label>
-                    <input type="number" id="number" required="required" min="0"
-                           placeholder="Positive integer" class="inputBox">
+                <div class="inputBox">
+                    <span class="input-item">Participation</span>
+                    <input type="number" id="number" required="required" min="0" value="7"
+                           placeholder="Positive integer" class="input-field">
                 </div>
             </div>
             <div class="col">
-                <div class="row">
-                    <label for="startTime">StartTime</label>
-                    <select id="startTime" class="inputBox">
+                <div class="inputBox">
+                    <span class="input-item">StartTime</span>
+                    <select id="startTime" class="input-field">
                         <option>09:00</option>
                         <option>10:00</option>
                         <option>11:00</option>
@@ -45,9 +45,9 @@
                         <option>20:00</option>
                     </select>
                 </div>
-                <div class="row">
-                    <label for="endTime">EndTime</label>
-                    <select id="endTime" class="inputBox">
+                <div class="inputBox">
+                    <span class="input-item">EndTime</span>
+                    <select id="endTime" class="input-field">
                         <option>11:00</option>
                         <option>12:00</option>
                         <option>13:00</option>
@@ -63,26 +63,26 @@
                     </select>
                 </div>
             </div>
-            </div>
             <input type="button" id="add" class="button" value="Add">
         </form>
-        <h3>Activity List</h3>
+        <hr class="divider">
+        <h3 class="label">Activity List</h3>
         <textarea id="list" class="input"
                   placeholder="Input format {yyyy-MM-dd HH:mm~HH:mm} {participation}, and one item one line, don not leave blank line between two items."></textarea>
-        <input type="button" id="result" class="button"
-               value="Generate Summary">
+        <input type="button" id="result" class="button" value="Generate Summary">
     </div>
     <div class="segment">
-        <h3>Result</h3>
+        <h3 class="label">Result</h3>
         <textarea id="resultList" class="output" readonly="readonly"></textarea>
         <input id="clean" type="button" class="button" value="Clear List">
     </div>
-</article>
+</div>
 <footer>
-    Copyright&copy<br><br>
+    Copyright&copy<br>
     Contact Me: youhandan@163.com 18328074723
 </footer>
 <script src="indexScript.js"></script>
 <script src="generateSummary.js"></script>
+<script src="inputVerification.js"></script>
 </body>
 </html>

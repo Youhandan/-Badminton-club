@@ -1,41 +1,34 @@
+
 *{
-    margin: 0;
-    padding: 0;
-}
-html{
-    display: flex;
-    flex-direction: column;
+    box-sizing:content-box;/* 伸缩项目自动box-sizing:border-box，所以需调整为content-box */
+    margin:0;
+    padding:0;
+    border-color:  #d8d8d8;
 }
 body{
-    display: flex;
-    flex-direction: column;
-    flex: auto;
-
+    display:flex;
+    flex-direction:column;/* 头、中部、脚纵向显示 */
+    min-height: 100vh;
 }
+
 header{
     background: #216fd0;
-    height: 50px;
     text-align: center;
-    padding:20px 10px 0 0;
     color: white;
-    flex: auto;
 }
 footer{
     background:black;
     text-align: center;
-    padding:10px 0;
     color: white;
-    font-size: 10px;
-    flex: auto;
+    padding: 10px;
 }
-article{
+.content{
     display: flex;
-    justify-content: space-around;
+    flex: 1;/*110*/
+    flex-wrap: wrap;
+
 }
-form{
-    display: flex;
-    flex-direction: column;
-}
+
 .segment{
     border: 1px solid #d8d8d8;
     padding: 20px;
@@ -43,26 +36,14 @@ form{
     flex-direction:column;
     flex-wrap:wrap;
     margin: 20px;
-    flex: auto;
-    width: 50%;
+    flex: 1;
 }
-textarea {
-    margin: 10px;
-    padding: 10px;
-    font-size: 20px;
-    resize: none;
-    flex: auto;
-}
-textarea.output{
-    height: 350px;
-}
-.row{
-    padding: 5px;
-    margin: 5px;
+
+form{
     display: flex;
     justify-content: space-between;
-    flex-wrap:wrap;
-    align-items: flex-end;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
 }
 .col{
     margin: 5px;
@@ -72,38 +53,59 @@ textarea.output{
     flex-wrap:wrap;
     flex-direction: column;
 }
-.col label{
-    margin-right: 10px;
+.inputBox{
+    margin-bottom: 20px;
+    display: flex;
+    border: 1px solid #d8d8d8;
+    font-family: inherit;
+    flex: 1;
+
+}
+.input-field{
+    padding: 5px;
+    flex: 1;
+    border: none;
+}
+.input-item{
+    padding: 5px;
+    background: #f8f8f8;
+    border-right: 1px solid #d8d8d8;
+    color: grey;
+}
+textarea {
+    margin: 10px;
+    padding: 10px;
+    resize: none;
     flex: auto;
-    font-size: 17px;
 }
 
 
-
 .button{
-    margin: 10px;
+    margin-top: 20px;
     background: #3385ff;
     color: white;
-    padding: 8px;
-    font-size: 15px;
-    border-radius: 8px;
+    padding: 10px;
     border: none;
-    box-shadow: 2px 2px #216fd0;
+    box-shadow: 2px 2px 1px #216fd0;
     align-self:flex-end;
     outline-style: inherit;
+    font-family: inherit;
 }
 .button:hover{
     background: #216fd0;
 }
-h3{
+.label{
     background: #216fd0;
     color: white;
-    padding: 5px 15px 5px 5px;
+    padding: 10px 15px 10px 10px;
     align-self: flex-start;
     position: relative;
     right: 20px;
     bottom: 20px;
+    box-shadow: 2px 2px 1px #216fd0;
 }
-.inputBox{
-    font-size: 17px;
+.divider{
+    border: 1px solid #d8d8d8;
+    margin-bottom: 35px;
 }
+
