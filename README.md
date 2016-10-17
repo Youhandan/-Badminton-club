@@ -56,3 +56,6 @@ This project is aim to help Xiaoming book badminton venue and do financial stati
 
 **Some other function**  
 The page layout can auto adjust when you narrow the browser.
+
+##UT
+UT is in the UT file. Open the index-test.html to see the test result.
