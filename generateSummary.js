@@ -102,7 +102,7 @@ function placeMoneyFunc(day,startTime,endTime) {
 
     /*计算不同时间场地金额*/
     /*工作日*/
-    if(day<6){
+    if(day<5){
         /*开始时间段9:00~11:00*/
         if(startTime>=9&&startTime<12){
             if(endTime<=12){
